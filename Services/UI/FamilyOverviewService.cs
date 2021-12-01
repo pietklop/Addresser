@@ -52,13 +52,18 @@ namespace Services.UI
             {
                 return new FamilyViewModel
                 {
-                    Title = fam.Title == Title.FirstName ? "" : $"{fam.Title}.",
-                    NameOverride = fam.NameOverride,
+                    DisplayName = DisplayName(fam),
                     FirstName = fam.FirstName,
                     LastName = fam.LastName,
                     City = fam.City,
                     Street = fam.Street,
                 };
+            }
+
+            string DisplayName(Family fam)
+            {
+                string prefix = fam.Title == Title.FirstName ? fam.FirstName : $"{fam.Title}.";
+                return $"{prefix} {fam.LastName}";
             }
         }
     }

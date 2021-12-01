@@ -2,8 +2,7 @@
 {
     public class FamilyViewModel
     {
-        public string Title { get; set; }
-        public string NameOverride { get; set; }
+        public string DisplayName { get; set; }
         [ColumnCellsUnderline]
         public string FirstName { get; set; }
         [ColumnCellsUnderline]

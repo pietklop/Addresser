@@ -55,7 +55,7 @@ namespace TestConsole
 
                 db.Families.Add(new Family
                 {
-                    Title = Title.None,
+                    Title = Title.FirstName,
                     NameOverride = null,
                     FirstName = "Piet",
                     LastName = "Klop",
