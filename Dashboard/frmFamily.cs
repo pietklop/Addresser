@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using Castle.Core.Internal;
 using Core;
 using Messages.UI.Dto;
-using Services.UI;
+using Services;
 
 namespace Dashboard
 {

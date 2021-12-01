@@ -13,6 +13,7 @@ namespace Dashboard.DI
 
             container.Register(Component.For<frmFamily>().LifestyleTransient());
             container.Register(Component.For<frmOverview>().LifestyleTransient());
+            container.Register(Component.For<frmPrintList>().LifestyleTransient());
         }
     }
 }

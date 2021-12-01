@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DAL;
 using DAL.Entities;
 using Messages.UI.Dto;
+using Services.Helpers;
 
-namespace Services.UI
+namespace Services
 {
     public class FamilyService
     {
@@ -14,6 +16,31 @@ namespace Services.UI
         {
             this.db = db;
         }
+
+        public List<FamilyDto> GetList(string filter)
+        {
+            var condition = FamilyHelper.BuildWhereCondition(filter);
+            var famsDb = db.Families.Where(condition)
+                .OrderBy(f => f.LastName).ToList();
+
+            return famsDb.Select(Map).ToList();
+
+            FamilyDto Map(Family fam)
+            {
+                return new FamilyDto
+                {
+                    Id = fam.Id,
+                    Title = fam.Title,
+                    NameOverride = fam.NameOverride,
+                    FirstName = fam.FirstName,
+                    LastName = fam.LastName,
+                    City = fam.City,
+                    Street = fam.Street,
+                    ZipCode = fam.ZipCode,
+                };
+            }
+        }
+
 
         public FamilyDto GetBy(string firstName, string lastName)
         {

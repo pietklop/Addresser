@@ -45,6 +45,7 @@ namespace Dashboard
 
         private void btnMainOverview_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmOverview>());
         private void btnNewFamily_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmFamily>());
+        private void btnNewPrintList_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmPrintList>());
 
         private void btnMainOverview_Leave(object sender, EventArgs e) => SetDefaultButtonBackColor((Button)sender);
         private void btnTransactions_Leave(object sender, EventArgs e) => SetDefaultButtonBackColor((Button)sender);
@@ -68,6 +69,5 @@ namespace Dashboard
         }
 
         private void SetDefaultButtonBackColor(Button button) => button.BackColor = Color.FromArgb(24, 30, 54);
-
     }
 }
