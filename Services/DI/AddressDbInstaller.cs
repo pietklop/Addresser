@@ -5,7 +5,7 @@ using DAL;
 
 namespace Services.DI
 {
-    public class StockDbInstaller : IWindsorInstaller
+    public class AddressDbInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
