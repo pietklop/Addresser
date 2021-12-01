@@ -40,11 +40,14 @@ namespace Dashboard
             lblVersion.Text = $"v{version.Major}.{version.Minor}.{version.Build}";
         }
 
-        public void ShowOverview() => btnMainOverview_Click(btnMainOverview, EventArgs.Empty);
-        public void ShowFamilyDetails(string firstName, string lastName) => LoadForm(lastName, CastleContainer.Instance.Resolve<frmFamily>(new Arguments {{"frmMain", this}, { "firstName",firstName }, {"lastName", lastName} }));
+        public void ShowFamilyOverview() => btnMainOverview_Click(btnMainOverview, EventArgs.Empty);
+        public void ShowPrintListOverview() => btnPrintListsOverview_Click(btnPrintListsOverview, EventArgs.Empty);
+        public void ShowFamilyDetails(string firstName, string lastName) => LoadForm(lastName, CastleContainer.Instance.Resolve<frmFamily>(new Arguments {{"frmMain", this}, { "firstName", firstName }, {"lastName", lastName} }));
+        public void ShowPrintList(string name) => LoadForm(name, CastleContainer.Instance.Resolve<frmPrintList>(new Arguments {{"frmMain", this}, { "name", name }}));
 
         private void btnMainOverview_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmOverview>());
         private void btnNewFamily_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmFamily>());
+        private void btnPrintListsOverview_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmPrintListsOverview>());
         private void btnNewPrintList_Click(object sender, EventArgs e) => LoadForm(((Button)sender).Text, CastleContainer.Resolve<frmPrintList>());
 
         private void btnMainOverview_Leave(object sender, EventArgs e) => SetDefaultButtonBackColor((Button)sender);

@@ -16,6 +16,18 @@ namespace Services
             this.db = db;
         }
 
+        public PrintListDto GetBy(string name)
+        {
+            var listDb = GetByOrDefault(name);
+            if (listDb == null) return null;
+
+            return new PrintListDto
+            {
+                Name = name,
+                Families = listDb.FamilyPrintListRelations.Select(r => FamilyMapper.Map(r.Family)).ToList(),
+            };
+        }
+
         public void Save(PrintListDto printListDto)
         {
             PrintList printListDb = GetByOrDefault(printListDto.Name);

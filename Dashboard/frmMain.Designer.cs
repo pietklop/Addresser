@@ -32,10 +32,11 @@ namespace Dashboard
             this.components = new System.ComponentModel.Container();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnPrintListsOverview = new System.Windows.Forms.Button();
+            this.btnNewPrintList = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnMainOverview = new System.Windows.Forms.Button();
             this.btnNewFamily = new System.Windows.Forms.Button();
-            this.btnNewPrintList = new System.Windows.Forms.Button();
             this.pnlInfo = new System.Windows.Forms.Panel();
             this.lblSpv = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
@@ -65,10 +66,11 @@ namespace Dashboard
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.btnPrintListsOverview, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnNewPrintList, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnImport, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnMainOverview, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNewFamily, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnNewPrintList, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 144);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
@@ -81,8 +83,39 @@ namespace Dashboard
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(186, 603);
             this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // btnPrintListsOverview
+            // 
+            this.btnPrintListsOverview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrintListsOverview.FlatAppearance.BorderSize = 0;
+            this.btnPrintListsOverview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintListsOverview.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPrintListsOverview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnPrintListsOverview.Location = new System.Drawing.Point(3, 83);
+            this.btnPrintListsOverview.Name = "btnPrintListsOverview";
+            this.btnPrintListsOverview.Size = new System.Drawing.Size(180, 34);
+            this.btnPrintListsOverview.TabIndex = 11;
+            this.btnPrintListsOverview.Text = "Print lists";
+            this.btnPrintListsOverview.UseVisualStyleBackColor = true;
+            this.btnPrintListsOverview.Click += new System.EventHandler(this.btnPrintListsOverview_Click);
+            // 
+            // btnNewPrintList
+            // 
+            this.btnNewPrintList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNewPrintList.FlatAppearance.BorderSize = 0;
+            this.btnNewPrintList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewPrintList.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnNewPrintList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnNewPrintList.Location = new System.Drawing.Point(3, 123);
+            this.btnNewPrintList.Name = "btnNewPrintList";
+            this.btnNewPrintList.Size = new System.Drawing.Size(180, 34);
+            this.btnNewPrintList.TabIndex = 10;
+            this.btnNewPrintList.Text = "New print list";
+            this.btnNewPrintList.UseVisualStyleBackColor = true;
+            this.btnNewPrintList.Click += new System.EventHandler(this.btnNewPrintList_Click);
             // 
             // btnImport
             // 
@@ -91,9 +124,9 @@ namespace Dashboard
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnImport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnImport.Location = new System.Drawing.Point(3, 566);
+            this.btnImport.Location = new System.Drawing.Point(3, 586);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(180, 34);
+            this.btnImport.Size = new System.Drawing.Size(180, 14);
             this.btnImport.TabIndex = 8;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -129,21 +162,6 @@ namespace Dashboard
             this.btnNewFamily.Text = "New family";
             this.btnNewFamily.UseVisualStyleBackColor = true;
             this.btnNewFamily.Click += new System.EventHandler(this.btnNewFamily_Click);
-            // 
-            // btnNewPrintList
-            // 
-            this.btnNewPrintList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNewPrintList.FlatAppearance.BorderSize = 0;
-            this.btnNewPrintList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewPrintList.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnNewPrintList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnNewPrintList.Location = new System.Drawing.Point(3, 83);
-            this.btnNewPrintList.Name = "btnNewPrintList";
-            this.btnNewPrintList.Size = new System.Drawing.Size(180, 34);
-            this.btnNewPrintList.TabIndex = 4;
-            this.btnNewPrintList.Text = "New print list";
-            this.btnNewPrintList.UseVisualStyleBackColor = true;
-            this.btnNewPrintList.Click += new System.EventHandler(this.btnNewPrintList_Click);
             // 
             // pnlInfo
             // 
@@ -247,7 +265,6 @@ namespace Dashboard
         private System.Windows.Forms.Panel pnlInfo;
         private System.Windows.Forms.Button btnNewFamily;
         private System.Windows.Forms.Panel pnlFormLoader;
-        private System.Windows.Forms.Button btnNewPrintList;
         private MetroFramework.Components.MetroStyleManager metroStyleFormManager;
         private System.Windows.Forms.Panel pnlTitle;
         private System.Windows.Forms.Label lblViewName;
@@ -255,6 +272,8 @@ namespace Dashboard
         private System.Windows.Forms.Label lblSpv;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnNewPrintList;
+        private System.Windows.Forms.Button btnPrintListsOverview;
     }
 }
 

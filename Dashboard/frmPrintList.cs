@@ -3,22 +3,33 @@ using System.Windows.Forms;
 using Castle.Core.Internal;
 using Messages.UI.Dto;
 using Services;
-using Services.UI;
 
 namespace Dashboard
 {
     public partial class frmPrintList : Form
     {
+        private readonly frmMain frmMain;
         private readonly FamilyService familyService;
         private readonly PrintListService printListService;
 
-        public frmPrintList(FamilyService familyService, PrintListService printListService)
+        public frmPrintList(frmMain frmMain, FamilyService familyService, PrintListService printListService, string name = null)
         {
+            this.frmMain = frmMain;
             this.familyService = familyService;
             this.printListService = printListService;
             InitializeComponent();
 
+            if (!name.IsNullOrEmpty()) UpdateControls(name);
             PopulateLstSource("");
+        }
+
+        private void UpdateControls(string name)
+        {
+            txtName.Text = name;
+            var dstList = printListService.GetBy(name);
+
+            foreach (var item in dstList.Families)
+                lstDestination.Items.Add(item);
         }
 
         private void PopulateLstSource(string filter)
@@ -85,6 +96,9 @@ namespace Dashboard
                 printList.Families.Add((FamilyDto)item);
 
             printListService.Save(printList);
+
+            Close();
+            frmMain.ShowPrintListOverview();
         }
 
         private void txtFilter_MouseClick(object sender, MouseEventArgs e) => SelectTxtFilterContent();
@@ -105,6 +119,9 @@ namespace Dashboard
         private void btnDelete_Click(object sender, System.EventArgs e)
         {
             printListService.Delete(txtName.Text);
+
+            Close();
+            frmMain.ShowPrintListOverview();
         }
     }
 }

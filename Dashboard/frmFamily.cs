@@ -73,7 +73,7 @@ namespace Dashboard
             familyService.Save(famDto);
 
             Close();
-            frmMain.ShowOverview();
+            frmMain.ShowFamilyOverview();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace Dashboard
             familyService.Delete(famDto);
 
             Close();
-            frmMain.ShowOverview();
+            frmMain.ShowFamilyOverview();
         }
 
         private void txtCity_KeyDown(object sender, KeyEventArgs e)
