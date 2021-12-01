@@ -9,10 +9,13 @@ namespace DAL
     public class AddressDbContext : DbContext
     {
         public DbSet<Family> Families { get; set; }
+        public DbSet<PrintList> PrintLists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<FamilyPrintListRelation>().HasKey(r => new { r.FamilyId, r.PrintListId });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

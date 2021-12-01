@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System.Collections.Generic;
+using Core;
 using JetBrains.Annotations;
 
 namespace DAL.Entities
@@ -12,5 +13,6 @@ namespace DAL.Entities
         public string Street { get; set; }
         public string ZipCode { get; set; }
         public string City { get; set; }
+        public ICollection<FamilyPrintListRelation> FamilyPrintListRelations { get; set; }
     }
 }
