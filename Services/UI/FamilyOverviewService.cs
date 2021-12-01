@@ -24,7 +24,8 @@ namespace Services.UI
         public List<FamilyViewModel> GetFamilies(string filter)
         {
             var condition = BuildWhereCondition();
-            var famsDb = db.Families.Where(condition).ToList();
+            var famsDb = db.Families.Where(condition)
+                .OrderBy(f => f.LastName).ToList();
 
             return famsDb.Select(Map).ToList();
 
