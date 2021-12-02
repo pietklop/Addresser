@@ -12,13 +12,15 @@ namespace Dashboard
         private readonly FamilyService familyService;
         private readonly PrintListService printListService;
         private readonly PrintService printService;
+        private readonly StickerConfigService stickerConfigService;
 
-        public frmPrintList(frmMain frmMain, FamilyService familyService, PrintListService printListService, PrintService printService, string name = null)
+        public frmPrintList(frmMain frmMain, FamilyService familyService, PrintListService printListService, PrintService printService, StickerConfigService stickerConfigService, string name = null)
         {
             this.frmMain = frmMain;
             this.familyService = familyService;
             this.printListService = printListService;
             this.printService = printService;
+            this.stickerConfigService = stickerConfigService;
             InitializeComponent();
 
             if (!name.IsNullOrEmpty()) UpdateControls(name);
@@ -132,7 +134,7 @@ namespace Dashboard
             foreach (var item in lstDestination.Items)
                 list.Add((FamilyDto)item);
 
-            printService.PrintPreview(list);
+            printService.PrintPreview(list, stickerConfigService.GetDefault());
         }
     }
 }

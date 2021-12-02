@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Core;
@@ -20,6 +21,7 @@ namespace Services
 
         public void PrintPreview(List<FamilyDto> famList, StickerConfigDto stickerConfig)
         {
+            if (stickerConfig == null) throw new Exception($"{nameof(stickerConfig)} can not be null");
             var doc = CreatePrint(famList, stickerConfig);
             string savePath = Path.ChangeExtension(settings.DbFileNamePath, "pdf");
 

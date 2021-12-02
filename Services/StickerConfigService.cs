@@ -17,6 +17,13 @@ namespace Services
             this.mapper = mapper;
         }
 
+        public StickerConfigDto GetDefault()
+        {
+            var scDb = db.StickerConfigs.OrderByDescending(s => s.IsDefault).First();
+
+            return mapper.Map<StickerConfigDto>(scDb);
+        }
+
         public StickerConfigDto GetBy(string name)
         {
             var listDb = GetByOrDefault(name);
@@ -37,6 +44,12 @@ namespace Services
             }
 
             mapper.Map(scDto, scDb);
+
+            if (scDto.IsDefault)
+            {
+                var others = db.StickerConfigs.Where(s => s.Name != scDto.Name).ToList();
+                others.ForEach(o => o.IsDefault = false);
+            }
 
             db.SaveChanges();
         }

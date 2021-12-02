@@ -31,6 +31,7 @@ namespace Dashboard
             var dto = stickerConfigService.GetBy(name);
 
             txtName.Text = dto.Name;
+            chkIsDefault.Checked = dto.IsDefault;
             txtRowCount.Text = dto.RowCount.ToString();
             txtColCount.Text = dto.ColumnCount.ToString();
             txtRowOffset.Text = dto.RowOffset.ToString();
@@ -85,6 +86,7 @@ namespace Dashboard
         {
             var dto = new StickerConfigDto();
             dto.Name = txtName.Text;
+            dto.IsDefault = chkIsDefault.Checked;
             dto.RowCount = int.Parse(txtRowCount.Text);
             dto.ColumnCount = int.Parse(txtColCount.Text);
             dto.RowOffset = int.Parse(txtRowOffset.Text);

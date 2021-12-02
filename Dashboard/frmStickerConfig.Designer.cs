@@ -48,6 +48,7 @@ namespace Dashboard
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.chkIsDefault = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -262,12 +263,25 @@ namespace Dashboard
             this.btnPrintPreview.UseVisualStyleBackColor = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
+            // chkIsDefault
+            // 
+            this.chkIsDefault.AutoSize = true;
+            this.chkIsDefault.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkIsDefault.ForeColor = System.Drawing.Color.Gainsboro;
+            this.chkIsDefault.Location = new System.Drawing.Point(421, 57);
+            this.chkIsDefault.Name = "chkIsDefault";
+            this.chkIsDefault.Size = new System.Drawing.Size(92, 25);
+            this.chkIsDefault.TabIndex = 27;
+            this.chkIsDefault.Text = "Is default";
+            this.chkIsDefault.UseVisualStyleBackColor = true;
+            // 
             // frmStickerConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkIsDefault);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
@@ -317,5 +331,6 @@ namespace Dashboard
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.CheckBox chkIsDefault;
     }
 }

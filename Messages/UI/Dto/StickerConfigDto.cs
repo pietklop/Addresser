@@ -10,5 +10,6 @@
         public int RowPitch { get; set; }
         public int ColumnPitch { get; set; }
         public int FontSize { get; set; }
+        public bool IsDefault { get; set; }
     }
 }
