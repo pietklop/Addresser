@@ -8,7 +8,6 @@ using DAL.Entities;
 using log4net;
 using log4net.Config;
 using Microsoft.EntityFrameworkCore;
-using Services.DI;
 using TestConsole.Infrastructure;
 
 namespace TestConsole
@@ -62,6 +61,19 @@ namespace TestConsole
                     Street = "Valeriusrondeel 153",
                     ZipCode = "2902 CD",
                     City = "Capelle a/d IJssel",
+                });
+
+                db.StickerConfigs.Add(new StickerConfig
+                {
+                    Name = "Sticker 8x3",
+                    RowCount = 8,
+                    ColumnCount = 3,
+                    RowOffset = 40,
+                    ColumnOffset = 25,
+                    RowPitch = 105,
+                    ColumnPitch = 190,
+                    FontSize = 12,
+                    IsDefault = true,
                 });
 
                 db.SaveChanges();
