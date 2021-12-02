@@ -43,6 +43,7 @@ namespace Dashboard
         {
             btnSave.Visible = false;
 
+            if (txtFirstName.Text == "") return;
             if (txtLastName.Text == "") return;
             if (txtZipCode.Text == "") return;
             if (txtStreet.Text == "") return;
@@ -51,12 +52,10 @@ namespace Dashboard
             btnSave.Visible = true;
         }
 
+        private void txtFirstName_TextChanged(object sender, EventArgs e) => ValidateInput();
         private void txtLastName_TextChanged(object sender, EventArgs e) => ValidateInput();
-
         private void txtZipCode_TextChanged(object sender, EventArgs e) => ValidateInput();
-
         private void txtStreet_TextChanged(object sender, EventArgs e) => ValidateInput();
-
         private void txtCity_TextChanged(object sender, EventArgs e) => ValidateInput();
 
         private void btnSave_Click(object sender, EventArgs e)
