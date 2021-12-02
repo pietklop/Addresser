@@ -10,6 +10,7 @@ namespace DAL
     {
         public DbSet<Family> Families { get; set; }
         public DbSet<PrintList> PrintLists { get; set; }
+        public DbSet<StickerConfig> StickerConfigs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
