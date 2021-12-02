@@ -38,6 +38,7 @@ namespace Dashboard
             this.lstDestination = new System.Windows.Forms.ListBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnPrintPreview = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtName
@@ -125,7 +126,7 @@ namespace Dashboard
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnDelete.Location = new System.Drawing.Point(310, 40);
+            this.btnDelete.Location = new System.Drawing.Point(438, 40);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 23);
             this.btnDelete.TabIndex = 19;
@@ -147,12 +148,29 @@ namespace Dashboard
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.btnPrintPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintPreview.Font = new System.Drawing.Font("Wingdings 2", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrintPreview.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrintPreview.Location = new System.Drawing.Point(310, 38);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(56, 50);
+            this.btnPrintPreview.TabIndex = 20;
+            this.btnPrintPreview.Text = "6";
+            this.btnPrintPreview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.UseVisualStyleBackColor = false;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
             // frmPrintList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(800, 534);
+            this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lstDestination);
@@ -181,5 +199,6 @@ namespace Dashboard
         private System.Windows.Forms.ListBox lstDestination;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnPrintPreview;
     }
 }

@@ -11,12 +11,14 @@ namespace Dashboard
         private readonly frmMain frmMain;
         private readonly FamilyService familyService;
         private readonly PrintListService printListService;
+        private readonly PrintService printService;
 
-        public frmPrintList(frmMain frmMain, FamilyService familyService, PrintListService printListService, string name = null)
+        public frmPrintList(frmMain frmMain, FamilyService familyService, PrintListService printListService, PrintService printService, string name = null)
         {
             this.frmMain = frmMain;
             this.familyService = familyService;
             this.printListService = printListService;
+            this.printService = printService;
             InitializeComponent();
 
             if (!name.IsNullOrEmpty()) UpdateControls(name);
@@ -122,6 +124,15 @@ namespace Dashboard
 
             Close();
             frmMain.ShowPrintListOverview();
+        }
+
+        private void btnPrintPreview_Click(object sender, System.EventArgs e)
+        {
+            var list = new List<FamilyDto>();
+            foreach (var item in lstDestination.Items)
+                list.Add((FamilyDto)item);
+
+            printService.PrintPreview(list);
         }
     }
 }

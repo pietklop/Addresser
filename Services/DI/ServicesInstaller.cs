@@ -23,6 +23,7 @@ namespace Services.DI
             container.Register(Component.For<FamilyOverviewService>().LifestyleTransient());
             container.Register(Component.For<PrintListOverviewService>().LifestyleTransient());
             container.Register(Component.For<PrintListService>().LifestyleTransient());
+            container.Register(Component.For<PrintService>().LifestyleTransient());
         }
 
     }

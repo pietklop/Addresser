@@ -15,5 +15,11 @@ namespace Messages.UI.Dto
         public string City { get; set; }
 
         public override string ToString() => $"{FirstName} {LastName}";
+
+        public string DisplayName()
+        {
+            string prefix = Title == Title.FirstName ? FirstName : $"{Title}.";
+            return $"{prefix} {LastName}";
+        }
     }
 }
