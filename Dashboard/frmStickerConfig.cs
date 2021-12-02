@@ -80,6 +80,9 @@ namespace Dashboard
             var dto = ControlInputToDto();
 
             stickerConfigService.Save(dto);
+
+            Close();
+            frmMain.ShowStickerConfigOverview();
         }
 
         private StickerConfigDto ControlInputToDto()

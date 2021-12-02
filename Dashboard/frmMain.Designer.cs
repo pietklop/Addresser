@@ -34,7 +34,7 @@ namespace Dashboard
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnPrintListsOverview = new System.Windows.Forms.Button();
             this.btnNewPrintList = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
+            this.btnStickerConfigOverview = new System.Windows.Forms.Button();
             this.btnMainOverview = new System.Windows.Forms.Button();
             this.btnNewFamily = new System.Windows.Forms.Button();
             this.pnlInfo = new System.Windows.Forms.Panel();
@@ -68,7 +68,7 @@ namespace Dashboard
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.btnPrintListsOverview, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnNewPrintList, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnImport, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnStickerConfigOverview, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnMainOverview, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNewFamily, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,20 +117,20 @@ namespace Dashboard
             this.btnNewPrintList.UseVisualStyleBackColor = true;
             this.btnNewPrintList.Click += new System.EventHandler(this.btnNewPrintList_Click);
             // 
-            // btnImport
+            // btnStickerConfigOverview
             // 
-            this.btnImport.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnImport.FlatAppearance.BorderSize = 0;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnImport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnImport.Location = new System.Drawing.Point(3, 586);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(180, 14);
-            this.btnImport.TabIndex = 8;
-            this.btnImport.Text = "Import";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Visible = false;
+            this.btnStickerConfigOverview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStickerConfigOverview.FlatAppearance.BorderSize = 0;
+            this.btnStickerConfigOverview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStickerConfigOverview.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnStickerConfigOverview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnStickerConfigOverview.Location = new System.Drawing.Point(3, 566);
+            this.btnStickerConfigOverview.Name = "btnStickerConfigOverview";
+            this.btnStickerConfigOverview.Size = new System.Drawing.Size(180, 34);
+            this.btnStickerConfigOverview.TabIndex = 8;
+            this.btnStickerConfigOverview.Text = "Sticker config";
+            this.btnStickerConfigOverview.UseVisualStyleBackColor = true;
+            this.btnStickerConfigOverview.Click += new System.EventHandler(this.btnStickerConfigOverview_Click);
             // 
             // btnMainOverview
             // 
@@ -271,7 +271,7 @@ namespace Dashboard
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblSpv;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnStickerConfigOverview;
         private System.Windows.Forms.Button btnNewPrintList;
         private System.Windows.Forms.Button btnPrintListsOverview;
     }

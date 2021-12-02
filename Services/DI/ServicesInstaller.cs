@@ -24,6 +24,7 @@ namespace Services.DI
             container.Register(Component.For<PrintListOverviewService>().LifestyleTransient());
             container.Register(Component.For<PrintListService>().LifestyleTransient());
             container.Register(Component.For<PrintService>().LifestyleTransient());
+            container.Register(Component.For<StickerConfigOverviewService>().LifestyleTransient());
             container.Register(Component.For<StickerConfigService>().LifestyleTransient());
         }
 

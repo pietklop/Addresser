@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DAL.Entities;
 using Messages.UI.Dto;
+using Messages.UI.Overview;
 
 namespace Services
 {
@@ -10,6 +11,7 @@ namespace Services
         {
             CreateMap<StickerConfigDto, StickerConfig>();
             CreateMap<StickerConfig, StickerConfigDto>();
+            CreateMap<StickerConfig, StickerConfigViewModel>();
         }
     }
 }
