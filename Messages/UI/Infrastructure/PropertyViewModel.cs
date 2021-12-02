@@ -1,4 +1,4 @@
-﻿namespace Messages.UI
+﻿namespace Messages.UI.Infrastructure
 {
     public class PropertyViewModel
     {

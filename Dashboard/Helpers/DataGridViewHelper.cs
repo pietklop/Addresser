@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Messages.UI;
+using Messages.UI.Infrastructure;
 
 namespace Dashboard.Helpers
 {

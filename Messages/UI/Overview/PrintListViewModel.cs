@@ -1,4 +1,6 @@
-﻿namespace Messages.UI.Overview
+﻿using Messages.UI.Infrastructure;
+
+namespace Messages.UI.Overview
 {
     public class PrintListViewModel
     {

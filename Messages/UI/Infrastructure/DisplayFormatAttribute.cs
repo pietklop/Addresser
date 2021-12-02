@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Messages.UI
+namespace Messages.UI.Infrastructure
 {
     public class DisplayFormatAttribute : Attribute
     {
