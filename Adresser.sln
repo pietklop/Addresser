@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{676F3FB6-6FAA-4D29-A9B8-7D4C5B02E359}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VLC.Report", "Library\VLC.Report\VLC.Report.csproj", "{F1E3BC1C-3E45-4A0B-B265-5D81B419C9E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{D8004E0A-74E0-4C7C-B650-60FAAFEC7F13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{676F3FB6-6FAA-4D29-A9B8-7D4C5B02E359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{676F3FB6-6FAA-4D29-A9B8-7D4C5B02E359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{676F3FB6-6FAA-4D29-A9B8-7D4C5B02E359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E3BC1C-3E45-4A0B-B265-5D81B419C9E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E3BC1C-3E45-4A0B-B265-5D81B419C9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E3BC1C-3E45-4A0B-B265-5D81B419C9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E3BC1C-3E45-4A0B-B265-5D81B419C9E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +66,7 @@ Global
 		{B66A6DBB-D2C7-4786-893F-E64353E43282} = {DDD64D34-B98E-41C1-8C25-06E4DF7DA84A}
 		{8ADDE2EF-1C11-412E-A6B0-4D59BA8AF0C9} = {DDD64D34-B98E-41C1-8C25-06E4DF7DA84A}
 		{676F3FB6-6FAA-4D29-A9B8-7D4C5B02E359} = {DDD64D34-B98E-41C1-8C25-06E4DF7DA84A}
+		{F1E3BC1C-3E45-4A0B-B265-5D81B419C9E2} = {D8004E0A-74E0-4C7C-B650-60FAAFEC7F13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E18EF132-3FDF-4162-868E-9D1B64BFEFB3}
