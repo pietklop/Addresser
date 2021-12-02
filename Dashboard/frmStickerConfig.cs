@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Castle.Core.Internal;
+using Core;
 using Messages.UI.Dto;
 using Services;
 
@@ -10,11 +12,13 @@ namespace Dashboard
     {
         private readonly frmMain frmMain;
         private readonly StickerConfigService stickerConfigService;
+        private readonly PrintService printService;
 
-        public frmStickerConfig(frmMain frmMain, StickerConfigService stickerConfigService, string name = null)
+        public frmStickerConfig(frmMain frmMain, StickerConfigService stickerConfigService, PrintService printService, string name = null)
         {
             this.frmMain = frmMain;
             this.stickerConfigService = stickerConfigService;
+            this.printService = printService;
             InitializeComponent();
 
             if (!name.IsNullOrEmpty()) UpdateControls(name);
@@ -22,6 +26,8 @@ namespace Dashboard
 
         private void UpdateControls(string name)
         {
+            btnDelete.Visible = true;
+
             var dto = stickerConfigService.GetBy(name);
 
             txtName.Text = dto.Name;
@@ -70,6 +76,13 @@ namespace Dashboard
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            var dto = ControlInputToDto();
+
+            stickerConfigService.Save(dto);
+        }
+
+        private StickerConfigDto ControlInputToDto()
+        {
             var dto = new StickerConfigDto();
             dto.Name = txtName.Text;
             dto.RowCount = int.Parse(txtRowCount.Text);
@@ -79,8 +92,26 @@ namespace Dashboard
             dto.RowPitch = int.Parse(txtRowPitch.Text);
             dto.ColumnPitch = int.Parse(txtColPitch.Text);
             dto.FontSize = (int)numFontSize.Value;
+            return dto;
+        }
 
-            stickerConfigService.Save(dto);
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            var stickerConfig = ControlInputToDto();
+
+            var list = new List<FamilyDto>();
+            for (int i = 0; i < stickerConfig.ColumnCount * stickerConfig.RowCount; i++)
+            {
+                list.Add(new FamilyDto
+                {
+                    Title = Title.Fam,
+                    LastName = "Jansen",
+                    Street = $"Willem van Oranjeplein {i+101}",
+                    ZipCode = "1234 AA Capelle aan den IJssel",
+                });
+            }
+
+            printService.PrintPreview(list, stickerConfig);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -47,6 +47,7 @@ namespace Dashboard
             this.numFontSize = new System.Windows.Forms.NumericUpDown();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnPrintPreview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -245,12 +246,29 @@ namespace Dashboard
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.btnPrintPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintPreview.Font = new System.Drawing.Font("Wingdings 2", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrintPreview.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrintPreview.Location = new System.Drawing.Point(467, 188);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(56, 50);
+            this.btnPrintPreview.TabIndex = 26;
+            this.btnPrintPreview.Text = "6";
+            this.btnPrintPreview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.UseVisualStyleBackColor = false;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
             // frmStickerConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.numFontSize);
@@ -298,5 +316,6 @@ namespace Dashboard
         private System.Windows.Forms.NumericUpDown numFontSize;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnPrintPreview;
     }
 }
