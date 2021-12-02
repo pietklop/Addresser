@@ -14,6 +14,7 @@ namespace Dashboard.DI
             container.Register(Component.For<frmOverview>().LifestyleTransient());
             container.Register(Component.For<frmPrintList>().LifestyleTransient());
             container.Register(Component.For<frmPrintListsOverview>().LifestyleTransient());
+            container.Register(Component.For<frmStickerConfig>().LifestyleTransient());
         }
     }
 }
