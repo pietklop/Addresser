@@ -16,6 +16,7 @@ namespace Services.DI
                 compositeInstaller.Add(externalInstaller);
 
             compositeInstaller.Add(new AddressDbInstaller());
+            compositeInstaller.Add(new AutoMapperInstaller());
             compositeInstaller.Add(new ServicesInstaller(SettingsHelper.GetSettings()));
 
             return compositeInstaller;
