@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Castle.Core.Internal;
+using Core;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,7 @@ namespace Services.Helpers
                         || EF.Functions.Like(j.LastName, pattern)
                         || EF.Functions.Like(j.City, pattern);
         }
+
 
     }
 }

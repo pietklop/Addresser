@@ -16,10 +16,6 @@ namespace Messages.UI.Dto
 
         public override string ToString() => $"{FirstName} {LastName}";
 
-        public string DisplayName()
-        {
-            string prefix = Title == Title.FirstName ? FirstName : $"{Title}.";
-            return $"{prefix} {LastName}";
-        }
+        public string DisplayName() => FamilyHelper.DisplayName(NameOverride, Title, FirstName, LastName);
     }
 }

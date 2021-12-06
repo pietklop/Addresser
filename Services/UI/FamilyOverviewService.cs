@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Core;
 using DAL;
 using DAL.Entities;
 using Messages.UI.Overview;
@@ -29,18 +28,12 @@ namespace Services.UI
             {
                 return new FamilyViewModel
                 {
-                    DisplayName = DisplayName(fam),
+                    DisplayName = Messages.UI.FamilyHelper.DisplayName(fam.NameOverride, fam.Title, fam.FirstName, fam.LastName),
                     FirstName = fam.FirstName,
                     LastName = fam.LastName,
                     City = fam.City,
                     Street = fam.Street,
                 };
-            }
-
-            string DisplayName(Family fam)
-            {
-                string prefix = fam.Title == Title.FirstName ? fam.FirstName : $"{fam.Title}.";
-                return $"{prefix} {fam.LastName}";
             }
         }
     }
