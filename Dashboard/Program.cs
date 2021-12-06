@@ -2,11 +2,9 @@
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using Core;
 using Dashboard.DI;
 using log4net;
 using log4net.Config;
-using Services;
 using Services.DI;
 
 namespace Dashboard
@@ -26,13 +24,21 @@ namespace Dashboard
             Application.SetCompatibleTextRenderingDefault(false);
 
             XmlConfigurator.Configure(new FileInfo(@"log4net.config"));
+            log.Info($"Start program");
 
-            var container = CastleContainer.Instance;
-            var installer = DependencyInstaller.CreateInstaller(new FormInstaller());
-            container.AddFacilities().Install(installer);
+            try
+            {
+                var container = CastleContainer.Instance;
+                var installer = DependencyInstaller.CreateInstaller(new FormInstaller());
+                container.AddFacilities().Install(installer);
 
-            var mainForm = CastleContainer.Resolve<frmMain>();
-            Application.Run(mainForm);
+                var mainForm = CastleContainer.Resolve<frmMain>();
+                Application.Run(mainForm);
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Exception occurred during program start", ex);
+            }
         }
     }
 }
