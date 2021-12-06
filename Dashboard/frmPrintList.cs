@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Castle.Core.Internal;
 using Messages.UI.Dto;
@@ -13,6 +14,7 @@ namespace Dashboard
         private readonly PrintListService printListService;
         private readonly PrintService printService;
         private readonly StickerConfigService stickerConfigService;
+        private HashSet<string> dstNames = new HashSet<string>();
 
         public frmPrintList(frmMain frmMain, FamilyService familyService, PrintListService printListService, PrintService printService, StickerConfigService stickerConfigService, string name = null)
         {
@@ -33,13 +35,26 @@ namespace Dashboard
             var dstList = printListService.GetBy(name);
 
             foreach (var item in dstList.Families)
-                lstDestination.Items.Add(item);
+                AddDestinationItem(item);
+        }
+
+        private void AddDestinationItem(FamilyDto dto)
+        {
+            lstDestination.Items.Add(dto);
+            dstNames.Add(dto.ToString());
+        }
+
+        private void RemoveDestinationItem(FamilyDto dto)
+        {
+            lstDestination.Items.Remove(dto);
+            dstNames.Remove(dto.ToString());
         }
 
         private void PopulateLstSource(string filter)
         {
             var fams = familyService.GetList(filter);
-            lstSource.DataSource = fams;
+
+            lstSource.DataSource = fams.Where(f => !dstNames.Contains(f.ToString())).ToList();
         }
 
         private void txtFilter_TextChanged(object sender, System.EventArgs e)
@@ -54,6 +69,8 @@ namespace Dashboard
             foreach (var item in lstSource.SelectedItems)
                 AddUniqueItemToLstDest((FamilyDto)item);
 
+            PopulateLstSource("");
+
             ValidateInput();
 
             void AddUniqueItemToLstDest(FamilyDto toAdd)
@@ -61,7 +78,7 @@ namespace Dashboard
                 foreach (var dstItem in lstDestination.Items)
                     if (dstItem.ToString() == toAdd.ToString()) return;
 
-                lstDestination.Items.Add(toAdd);
+                AddDestinationItem(toAdd);
             }
         }
 
@@ -71,7 +88,10 @@ namespace Dashboard
             foreach (var item in lstDestination.SelectedItems)
                 toRemove.Add((FamilyDto)item);
 
-            toRemove.ForEach(lstDestination.Items.Remove);
+            foreach (var dto in toRemove)
+                RemoveDestinationItem(dto);
+
+            PopulateLstSource("");
 
             ValidateInput();
         }
@@ -135,6 +155,22 @@ namespace Dashboard
                 list.Add((FamilyDto)item);
 
             printService.PrintPreview(list, stickerConfigService.GetDefault());
+        }
+
+        private void lstSource_DoubleClick(object sender, System.EventArgs e)
+        {
+            bool allSelected = lstSource.SelectedItems.Count == lstSource.Items.Count;
+
+            for (int i = 0; i < lstSource.Items.Count; i++)
+                lstSource.SetSelected(i, !allSelected);
+        }
+
+        private void lstDestination_DoubleClick(object sender, System.EventArgs e)
+        {
+            bool allSelected = lstDestination.SelectedItems.Count == lstDestination.Items.Count;
+
+            for (int i = 0; i < lstDestination.Items.Count; i++)
+                lstDestination.SetSelected(i, !allSelected);
         }
     }
 }

@@ -81,6 +81,7 @@ namespace Dashboard
             this.lstSource.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstSource.Size = new System.Drawing.Size(179, 274);
             this.lstSource.TabIndex = 13;
+            this.lstSource.DoubleClick += new System.EventHandler(this.lstSource_DoubleClick);
             // 
             // btnSrcToDest
             // 
@@ -120,6 +121,7 @@ namespace Dashboard
             this.lstDestination.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstDestination.Size = new System.Drawing.Size(179, 274);
             this.lstDestination.TabIndex = 17;
+            this.lstDestination.DoubleClick += new System.EventHandler(this.lstDestination_DoubleClick);
             // 
             // btnDelete
             // 
