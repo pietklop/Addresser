@@ -19,10 +19,10 @@ namespace Services
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
-        public void PrintPreview(List<FamilyDto> famList, StickerConfigDto stickerConfig)
+        public void PrintPreview(List<FamilyDto> famList, StickerConfigDto stickerConfig, int nStickersToSkip = 0)
         {
             if (stickerConfig == null) throw new Exception($"{nameof(stickerConfig)} can not be null");
-            var doc = CreatePrint(famList, stickerConfig);
+            var doc = CreatePrint(famList, stickerConfig, nStickersToSkip);
             string savePath = Path.ChangeExtension(settings.DbFileNamePath, "pdf");
 
             doc.Save("", savePath);
@@ -32,7 +32,7 @@ namespace Services
             p.Start();
         }
 
-        private DocBuilder CreatePrint(List<FamilyDto> famList, StickerConfigDto stickerConfig)
+        private DocBuilder CreatePrint(List<FamilyDto> famList, StickerConfigDto stickerConfig, int nStickersToSkip)
         {
             using var doc = new DocBuilder();
 
@@ -45,11 +45,14 @@ namespace Services
                 {
                     for (int x = 0; x < stickerConfig.ColumnCount; x++)
                     {
-                        doc.SetCurrentYPos(stickerConfig.RowOffset + y * stickerConfig.RowPitch);
-                        var left = stickerConfig.ColumnOffset + x * stickerConfig.ColumnPitch;
-                        DrawFamily(doc, famList[i], left);
+                        if (i >= nStickersToSkip)
+                        {
+                            doc.SetCurrentYPos(stickerConfig.RowOffset + y * stickerConfig.RowPitch);
+                            var left = stickerConfig.ColumnOffset + x * stickerConfig.ColumnPitch;
+                            DrawFamily(doc, famList[i - nStickersToSkip], left);
+                        }   
                         i++;
-                        if (i >= famList.Count) return doc;
+                        if (i-nStickersToSkip >= famList.Count) return doc;
                     }
                 }
                 doc.NewPage();

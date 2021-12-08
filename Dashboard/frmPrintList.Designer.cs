@@ -39,6 +39,8 @@ namespace Dashboard
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.txtStickersToSkip = new System.Windows.Forms.TextBox();
+            this.lblStickersToSkipT = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtName
@@ -128,7 +130,7 @@ namespace Dashboard
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnDelete.Location = new System.Drawing.Point(438, 40);
+            this.btnDelete.Location = new System.Drawing.Point(438, 478);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 23);
             this.btnDelete.TabIndex = 19;
@@ -157,7 +159,7 @@ namespace Dashboard
             this.btnPrintPreview.Font = new System.Drawing.Font("Wingdings 2", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPrintPreview.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrintPreview.Location = new System.Drawing.Point(310, 38);
+            this.btnPrintPreview.Location = new System.Drawing.Point(345, 13);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(56, 50);
             this.btnPrintPreview.TabIndex = 20;
@@ -166,12 +168,33 @@ namespace Dashboard
             this.btnPrintPreview.UseVisualStyleBackColor = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
+            // txtStickersToSkip
+            // 
+            this.txtStickersToSkip.Location = new System.Drawing.Point(482, 80);
+            this.txtStickersToSkip.Name = "txtStickersToSkip";
+            this.txtStickersToSkip.Size = new System.Drawing.Size(42, 23);
+            this.txtStickersToSkip.TabIndex = 21;
+            this.txtStickersToSkip.Text = "0";
+            // 
+            // lblStickersToSkipT
+            // 
+            this.lblStickersToSkipT.AutoSize = true;
+            this.lblStickersToSkipT.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStickersToSkipT.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblStickersToSkipT.Location = new System.Drawing.Point(345, 78);
+            this.lblStickersToSkipT.Name = "lblStickersToSkipT";
+            this.lblStickersToSkipT.Size = new System.Drawing.Size(113, 21);
+            this.lblStickersToSkipT.TabIndex = 22;
+            this.lblStickersToSkipT.Text = "Stickers to skip";
+            // 
             // frmPrintList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(800, 534);
+            this.Controls.Add(this.lblStickersToSkipT);
+            this.Controls.Add(this.txtStickersToSkip);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
@@ -202,5 +225,7 @@ namespace Dashboard
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.TextBox txtStickersToSkip;
+        private System.Windows.Forms.Label lblStickersToSkipT;
     }
 }

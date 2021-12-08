@@ -154,7 +154,8 @@ namespace Dashboard
             foreach (var item in lstDestination.Items)
                 list.Add((FamilyDto)item);
 
-            printService.PrintPreview(list, stickerConfigService.GetDefault());
+            int.TryParse(txtStickersToSkip.Text, out int nStickersToSkip);
+            printService.PrintPreview(list, stickerConfigService.GetDefault(), nStickersToSkip);
         }
 
         private void lstSource_DoubleClick(object sender, System.EventArgs e)
