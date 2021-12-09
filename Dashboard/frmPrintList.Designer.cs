@@ -41,6 +41,10 @@ namespace Dashboard
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.txtStickersToSkip = new System.Windows.Forms.TextBox();
             this.lblStickersToSkipT = new System.Windows.Forms.Label();
+            this.grpPrintMode = new System.Windows.Forms.GroupBox();
+            this.rbtList = new System.Windows.Forms.RadioButton();
+            this.rbtSticker = new System.Windows.Forms.RadioButton();
+            this.grpPrintMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtName
@@ -187,12 +191,46 @@ namespace Dashboard
             this.lblStickersToSkipT.TabIndex = 22;
             this.lblStickersToSkipT.Text = "Stickers to skip";
             // 
+            // grpPrintMode
+            // 
+            this.grpPrintMode.Controls.Add(this.rbtList);
+            this.grpPrintMode.Controls.Add(this.rbtSticker);
+            this.grpPrintMode.ForeColor = System.Drawing.Color.Gainsboro;
+            this.grpPrintMode.Location = new System.Drawing.Point(432, 4);
+            this.grpPrintMode.Name = "grpPrintMode";
+            this.grpPrintMode.Size = new System.Drawing.Size(92, 60);
+            this.grpPrintMode.TabIndex = 23;
+            this.grpPrintMode.TabStop = false;
+            // 
+            // rbtList
+            // 
+            this.rbtList.AutoSize = true;
+            this.rbtList.Location = new System.Drawing.Point(16, 34);
+            this.rbtList.Name = "rbtList";
+            this.rbtList.Size = new System.Drawing.Size(43, 19);
+            this.rbtList.TabIndex = 25;
+            this.rbtList.Text = "List";
+            this.rbtList.UseVisualStyleBackColor = true;
+            // 
+            // rbtSticker
+            // 
+            this.rbtSticker.AutoSize = true;
+            this.rbtSticker.Checked = true;
+            this.rbtSticker.Location = new System.Drawing.Point(16, 13);
+            this.rbtSticker.Name = "rbtSticker";
+            this.rbtSticker.Size = new System.Drawing.Size(65, 19);
+            this.rbtSticker.TabIndex = 24;
+            this.rbtSticker.TabStop = true;
+            this.rbtSticker.Text = "Stickers";
+            this.rbtSticker.UseVisualStyleBackColor = true;
+            // 
             // frmPrintList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(800, 534);
+            this.Controls.Add(this.grpPrintMode);
             this.Controls.Add(this.lblStickersToSkipT);
             this.Controls.Add(this.txtStickersToSkip);
             this.Controls.Add(this.btnPrintPreview);
@@ -208,6 +246,8 @@ namespace Dashboard
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPrintList";
             this.Text = "frmPrintList";
+            this.grpPrintMode.ResumeLayout(false);
+            this.grpPrintMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,5 +267,8 @@ namespace Dashboard
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.TextBox txtStickersToSkip;
         private System.Windows.Forms.Label lblStickersToSkipT;
+        private System.Windows.Forms.GroupBox grpPrintMode;
+        private System.Windows.Forms.RadioButton rbtList;
+        private System.Windows.Forms.RadioButton rbtSticker;
     }
 }

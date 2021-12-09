@@ -155,7 +155,11 @@ namespace Dashboard
                 list.Add((FamilyDto)item);
 
             int.TryParse(txtStickersToSkip.Text, out int nStickersToSkip);
-            printService.PrintPreview(list, stickerConfigService.GetDefault(), nStickersToSkip);
+
+            if (rbtSticker.Checked)
+                printService.PrintStickersPreview(list, stickerConfigService.GetDefault(), nStickersToSkip);
+            else
+                printService.PrintListPreview(list);
         }
 
         private void lstSource_DoubleClick(object sender, System.EventArgs e)

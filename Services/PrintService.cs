@@ -6,6 +6,7 @@ using Core;
 using Messages.UI.Dto;
 using PdfSharp.Drawing;
 using VLC.Report;
+using VLC.Report.Table;
 
 namespace Services
 {
@@ -19,10 +20,21 @@ namespace Services
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
-        public void PrintPreview(List<FamilyDto> famList, StickerConfigDto stickerConfig, int nStickersToSkip = 0)
+        public void PrintStickersPreview(List<FamilyDto> famList, StickerConfigDto stickerConfig, int nStickersToSkip = 0)
         {
             if (stickerConfig == null) throw new Exception($"{nameof(stickerConfig)} can not be null");
-            var doc = CreatePrint(famList, stickerConfig, nStickersToSkip);
+            var doc = CreateStickersPrint(famList, stickerConfig, nStickersToSkip);
+            SaveAndShow(doc);
+        }
+
+        public void PrintListPreview(List<FamilyDto> famList)
+        {
+            var doc = CreateListPrint(famList);
+            SaveAndShow(doc);
+        }
+
+        private void SaveAndShow(DocBuilder doc)
+        {
             string savePath = Path.ChangeExtension(settings.DbFileNamePath, "pdf");
 
             doc.Save("", savePath);
@@ -32,7 +44,7 @@ namespace Services
             p.Start();
         }
 
-        private DocBuilder CreatePrint(List<FamilyDto> famList, StickerConfigDto stickerConfig, int nStickersToSkip)
+        private DocBuilder CreateStickersPrint(List<FamilyDto> famList, StickerConfigDto stickerConfig, int nStickersToSkip)
         {
             using var doc = new DocBuilder();
 
@@ -65,5 +77,32 @@ namespace Services
             doc.DrawString(fam.Street, x: left);
             doc.DrawString($"{fam.ZipCode} {fam.City}", x: left);
         }
+
+        private DocBuilder CreateListPrint(List<FamilyDto> famList)
+        {
+            using var doc = new DocBuilder();
+
+            doc.SetFont(new XFont("Arial", 12));
+            var colDef = new List<ColumnDefinition>
+            {
+                new ColumnDefinition(null, DataType.String),
+                new ColumnDefinition(null, DataType.String),
+                new ColumnDefinition(50, DataType.String),
+                new ColumnDefinition(null, DataType.String),
+            };
+            colDef[0].XPos = 50;
+
+            var rows = new List<string[]>();
+            foreach (var dto in famList)
+                rows.Add(new[] { $"      {dto.DisplayName()}", dto.Street, dto.ZipCode, dto.City });
+
+            doc.MoveCurrentYPos(25);
+            var td = new TableData(doc, colDef, rows, additionalRowHeight: 0);
+
+            doc.DrawTable(td);
+
+            return doc;
+        }
+
     }
 }

@@ -116,7 +116,7 @@ namespace Dashboard
                 });
             }
 
-            printService.PrintPreview(list, stickerConfig);
+            printService.PrintStickersPreview(list, stickerConfig);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
