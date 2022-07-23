@@ -6,5 +6,6 @@
         Confirmation,
         String,
         PositiveDouble,
+        Time,
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,6 +9,10 @@ namespace Dashboard.Input
     {
         private readonly InputType inputType;
         public string Input { get; private set; } = null;
+        /// <summary>
+        /// This list can be used to allow special inputs and skip validation
+        /// </summary>
+        public List<string> AllowedSpecialValues = new List<string>();
 
         public frmInput(string caption, InputType inputType, string defaultValue = null)
         {
@@ -29,27 +34,42 @@ namespace Dashboard.Input
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            switch (inputType)
+            if (!AllowedSpecialValues.Contains(txtInput.Text))
             {
-                case InputType.Confirmation:
-                    break;
-                case InputType.String:
-                    if (string.IsNullOrEmpty(txtInput.Text))
-                    {
-                        Invalid();
-                        return;
-                    }
-                    break;
-                case InputType.PositiveDouble:
-                    txtInput.Text = txtInput.Text.Replace(",", ".");
-                    if (!double.TryParse(txtInput.Text, out double value) || value < 0)
-                    {
-                        Invalid();
-                        return;
-                    }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"Unsupported inputType {inputType}");
+                switch (inputType)
+                {
+                    case InputType.Confirmation:
+                        break;
+                    case InputType.String:
+                        if (string.IsNullOrEmpty(txtInput.Text))
+                        {
+                            Invalid();
+                            return;
+                        }
+                        break;
+                    case InputType.PositiveDouble:
+                        txtInput.Text = txtInput.Text.Replace(",", ".");
+                        if (!double.TryParse(txtInput.Text, out double value) || value < 0)
+                        {
+                            Invalid();
+                            return;
+                        }
+                        break;
+                    case InputType.Time:
+                        txtInput.Text = txtInput.Text.Replace(",", ".");
+                        txtInput.Text = txtInput.Text.Replace(":", ".");
+                        // convert separator to '.' to support validation hack
+                        if (!double.TryParse(txtInput.Text, out double _))
+                        {
+                            Invalid();
+                            return;
+                        }
+                        txtInput.Text = txtInput.Text.Replace(".", ":"); // back to ':' separator
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Unsupported inputType {inputType}");
+                }
+
             }
             Input = txtInput.Text;
 
@@ -74,5 +94,8 @@ namespace Dashboard.Input
         {
             if (e.KeyCode == Keys.Enter) btnOk_Click(this, EventArgs.Empty);
         }
+
+        private void frmInput_FormClosed(object sender, FormClosedEventArgs e) => Owner?.Focus();
+        private void frmInput_FormClosing(object sender, FormClosingEventArgs e) => Owner?.Focus();
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace Dashboard.Input
 {
-    partial class frmListInput
+    partial class frmMultiLineInput
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,8 @@ namespace Dashboard.Input
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.lblInputT = new System.Windows.Forms.Label();
+            this.txtInput = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
-            this.cmbMember = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnClose
@@ -42,7 +42,7 @@ namespace Dashboard.Input
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(163, 2);
+            this.btnClose.Location = new System.Drawing.Point(411, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(24, 23);
             this.btnClose.TabIndex = 4;
@@ -57,52 +57,51 @@ namespace Dashboard.Input
             this.lblInputT.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblInputT.Location = new System.Drawing.Point(12, 9);
             this.lblInputT.Name = "lblInputT";
-            this.lblInputT.Size = new System.Drawing.Size(64, 21);
+            this.lblInputT.Size = new System.Drawing.Size(59, 21);
             this.lblInputT.TabIndex = 5;
-            this.lblInputT.Text = "Select ...";
+            this.lblInputT.Text = "Enter ...";
+            // 
+            // txtInput
+            // 
+            this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInput.Location = new System.Drawing.Point(12, 46);
+            this.txtInput.Multiline = true;
+            this.txtInput.Name = "txtInput";
+            this.txtInput.Size = new System.Drawing.Size(414, 249);
+            this.txtInput.TabIndex = 1;
             // 
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.Gainsboro;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(141, 31);
+            this.btnOk.Location = new System.Drawing.Point(391, 306);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(35, 23);
-            this.btnOk.TabIndex = 6;
+            this.btnOk.TabIndex = 2;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // cmbMember
-            // 
-            this.cmbMember.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbMember.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMember.FormattingEnabled = true;
-            this.cmbMember.Location = new System.Drawing.Point(12, 31);
-            this.cmbMember.Name = "cmbMember";
-            this.cmbMember.Size = new System.Drawing.Size(121, 23);
-            this.cmbMember.TabIndex = 7;
-            // 
-            // frmListInput
+            // frmMultiLineInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(188, 68);
-            this.Controls.Add(this.cmbMember);
+            this.ClientSize = new System.Drawing.Size(438, 339);
             this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.txtInput);
             this.Controls.Add(this.lblInputT);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmListInput";
+            this.Name = "frmMultiLineInput";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmListInput";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmListInput_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmListInput_FormClosed);
+            this.Text = "frmMultiLineInput";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMultiLineInput_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMultiLineInput_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +111,7 @@ namespace Dashboard.Input
 
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblInputT;
+        private System.Windows.Forms.TextBox txtInput;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.ComboBox cmbMember;
     }
 }
