@@ -2,9 +2,11 @@
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using DAL;
 using Dashboard.DI;
 using log4net;
 using log4net.Config;
+using Microsoft.EntityFrameworkCore;
 using Services.DI;
 
 namespace Dashboard
@@ -28,6 +30,13 @@ namespace Dashboard
 
             try
             {
+                using (var db = AddressDbContextHelper.CreateDbContext())
+                {
+                    log.Info($"Migrate when necessary");
+                    db.Database.Migrate();
+                    db.SaveChanges();
+                }
+
                 var container = CastleContainer.Instance;
                 var installer = DependencyInstaller.CreateInstaller(new FormInstaller());
                 container.AddFacilities().Install(installer);

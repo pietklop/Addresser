@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using System.Data.Common;
+using DAL.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,10 @@ namespace DAL
         public DbSet<Family> Families { get; set; }
         public DbSet<PrintList> PrintLists { get; set; }
         public DbSet<StickerConfig> StickerConfigs { get; set; }
+
+        public AddressDbContext(DbContextOptions options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,5 +33,13 @@ namespace DAL
 
             optionsBuilder.UseSqlite(connection);
         }
+
+        public static DbConnection Connection(string dbFileNamePath)
+        {
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = dbFileNamePath };
+            var connectionString = connectionStringBuilder.ToString();
+            return new SqliteConnection(connectionString);
+        }
+
     }
 }

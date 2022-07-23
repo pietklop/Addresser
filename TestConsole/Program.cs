@@ -8,6 +8,7 @@ using DAL.Entities;
 using log4net;
 using log4net.Config;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using TestConsole.Infrastructure;
 
 namespace TestConsole
@@ -34,9 +35,25 @@ namespace TestConsole
                 await menu.RunAsync();
         }
 
+        /// <summary>
+        /// EF uses this creating the migrations
+        /// </summary>
+        public class ClockDbContextFactory : IDesignTimeDbContextFactory<AddressDbContext>
+        {
+            public AddressDbContext CreateDbContext(string[] args)
+            {
+                var settings = SettingsHelper.GetSettings();
+
+                var optionsBuilder = new DbContextOptionsBuilder<AddressDbContext>();
+                optionsBuilder.UseSqlite(AddressDbContext.Connection(settings.DbFileNamePath));
+
+                return new AddressDbContext(optionsBuilder.Options);
+            }
+        }
+
         public static void Migrate()
         {
-            using (var db = new AddressDbContext())
+            using (var db = AddressDbContextHelper.CreateDbContext())
             {
                 log.Info($"Migrate...");
                 db.Database.Migrate();
@@ -47,7 +64,7 @@ namespace TestConsole
 
         public static void Setup()
         {
-            using (var db = new AddressDbContext())
+            using (var db = AddressDbContextHelper.CreateDbContext())
             {
                 log.Info($"Migrate and setup");
                 db.Database.Migrate();

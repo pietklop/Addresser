@@ -15,9 +15,10 @@ namespace Services.DI
             foreach (var externalInstaller in externalInstallers)
                 compositeInstaller.Add(externalInstaller);
 
-            compositeInstaller.Add(new AddressDbInstaller());
+            var settings = SettingsHelper.GetSettings();
+            compositeInstaller.Add(new AddressDbInstaller(settings));
             compositeInstaller.Add(new AutoMapperInstaller());
-            compositeInstaller.Add(new ServicesInstaller(SettingsHelper.GetSettings()));
+            compositeInstaller.Add(new ServicesInstaller(settings));
 
             return compositeInstaller;
         }
