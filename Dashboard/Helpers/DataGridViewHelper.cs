@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
+using Core;
 using Messages.UI;
 using Messages.UI.Infrastructure;
 
@@ -11,16 +10,27 @@ namespace Dashboard.Helpers
 {
     public static class DataGridViewHelper
     {
-        public static void ApplyColumnDisplayFormatAttributes(this DataGridView dgv)
+        /// <summary>
+        /// Apply the column attributes on the grid
+        /// </summary>
+        /// <param name="showCellTooltips">The tooltips on the cells do sometime block your mouse click. The downside: If the tooltips are disabled the column header tooltips will not show either</param>
+        public static void ApplyColumnDisplayFormatAttributes(this DataGridView dgv, bool showCellTooltips = false)
         {
             var type = ListBindingHelper.GetListItemType(dgv.DataSource);
             var properties = TypeDescriptor.GetProperties(type);
+            dgv.ShowCellToolTips = showCellTooltips;
 
             foreach (DataGridViewColumn column in dgv.Columns)
             {
                 var p = properties[column.DataPropertyName];
                 if (p != null)
                 {
+                    var hide = (ColumnHideAttribute)p.Attributes[typeof(ColumnHideAttribute)];
+                    if (hide != null)
+                    {
+                        column.Visible = false;
+                        continue;
+                    }
                     var format = (DisplayFormatAttribute)p.Attributes[typeof(DisplayFormatAttribute)];
                     column.ToolTipText = p.Description;
                     column.DefaultCellStyle.Format = format?.Format;
@@ -40,6 +50,41 @@ namespace Dashboard.Helpers
             throw new Exception($"Could not find column: '{columnName}'");
         }
 
+        public static bool ColumnExists(this DataGridView dgv, string columnName)
+        {
+            foreach (DataGridViewColumn column in dgv.Columns)
+                if (column.Name == columnName)
+                    return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// All buttons will show same text
+        /// </summary>
+        public static void AddButtonColumn(this DataGridView dgv, string colName, string btnText)
+        {
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = colName;
+            buttonColumn.Text = btnText;
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Insert(dgv.ColumnCount, buttonColumn);
+        }
+
+        /// <summary>
+        /// All buttons will show same text
+        /// </summary>
+        public static void AddDisableButtonColumn(this DataGridView dgv, string colName, string btnText)
+        {
+            var buttonColumn = new DataGridViewDisableButtonColumn();
+            buttonColumn.Name = colName;
+            buttonColumn.Text = btnText;
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Insert(dgv.ColumnCount, buttonColumn);
+        }
+
         public static void SetReadOnly(this DataGridView dgv)
         {
             dgv.AllowUserToAddRows = false;
@@ -55,7 +100,8 @@ namespace Dashboard.Helpers
             dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
         }
 
-        public static void SetVisualStyling(this DataGridView dgv)
+        /// <param name="rowHeightRatio">For narrowing down the row height (0.75 - 1)</param>
+        public static void SetVisualStyling(this DataGridView dgv, bool showColumnHeader = true, double rowHeightRatio = 1)
         {
             dgv.RowHeadersVisible = false; // hides most left 'column'
 
@@ -73,25 +119,29 @@ namespace Dashboard.Helpers
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.Black;
 
             // column header color
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 0, 0);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(0, 126, 249);
-            dgv.EnableHeadersVisualStyles = false;
+            if (showColumnHeader)
+            {
+                dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 0, 0);
+                dgv.ColumnHeadersDefaultCellStyle.ForeColor = Constants.Blue;
+                dgv.EnableHeadersVisualStyles = false;
+            }
+            else
+                dgv.ColumnHeadersVisible = false;
+
+            dgv.RowTemplate.Height = dgv.RowHeight(rowHeightRatio);
         }
 
-        public static void DoColumnOrdering<T>(this DataGridView dgv, List<T> dataSourceList, int columnIndex)
-        {
-            var column = dgv.Columns[columnIndex];
-            var colName = column.Name;
-            if (column.Tag == null)
-                column.Tag = SortOrder.Descending;
-            else if (column.Tag.GetType() != typeof(SortOrder))
-                throw new Exception($"Column.Tag is already used, so can not be (ab)used for column ordering state");
-            column.Tag = (SortOrder)column.Tag == SortOrder.Descending ? SortOrder.Ascending : SortOrder.Descending;
+        private static double DefaultRowHeight = 25;
 
-            dgv.DataSource = (SortOrder)column.Tag == SortOrder.Ascending
-                ? dataSourceList.OrderBy(x => x.GetType().GetProperty(colName).GetValue(x)).ToList()
-                : dataSourceList.OrderByDescending(x => x.GetType().GetProperty(colName).GetValue(x)).ToList();
-        }
+        /// <summary>
+        /// Taking scaling into account
+        /// </summary>
+        private static int RowHeight(this DataGridView dgv, double rowHeightRatio) => (int)(DefaultRowHeight * rowHeightRatio * dgv.ScaleFactor());
+
+        /// <summary>
+        /// Taking scaling into account
+        /// </summary>
+        public static int RealHeight(this DataGridView dgv) => (dgv.Rows.Count + (dgv.RowHeadersVisible ? 1 : 0)) * dgv.RowTemplate.Height;
     }
 }
